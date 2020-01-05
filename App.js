@@ -31,7 +31,7 @@ const DetailScreen = ({navigation}) => {
   return(
     <View style={styles.container}>
       <Text>Soy la pantalla de detalle {count}!</Text>
-      <Button title="Volver" onPress={() => navigation.setParams({title: 'Pepito'})}/>    
+      <Button title="Volver" onPress={() => navigation.navigate('MiModal')}/>    
     </View>
   )
 }
@@ -53,19 +53,27 @@ const AppNavigator = createStackNavigator({
     screen: DetailScreen
   }
 }, { 
-    initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#fdc'
-      },
-      headerTintColor: '#555',
-      headerTitleStyle: {
-        fontWeight: '900'
-      }
+  initialRouteName: 'Home',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#fdc'
+    },
+    headerTintColor: '#555',
+    headerTitleStyle: {
+      fontWeight: '900'
     }
-  })
+  }
+})
 
-export default createAppContainer(AppNavigator)
+const RootStack = createStackNavigator({
+  Main: AppNavigator,
+  MiModal: () => <Text>KLalalalala</Text>
+}, {
+  mode: 'modal',
+  headerMode: 'none'
+})
+
+export default createAppContainer(RootStack)
 
 const styles = StyleSheet.create({
   container: {
