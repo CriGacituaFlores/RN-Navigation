@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const Logo = () => <Text>Lalalala</Text>
 
@@ -45,7 +46,7 @@ DetailScreen.navigationOptions = ({ navigation, navigationOptions }) => {
   }
 }
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createBottomTabNavigator({
   Home: {
     screen: HomeScreen
   },
