@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 const Logo = () => <Text>Lalalala</Text>
 
@@ -10,12 +12,15 @@ const HomeScreen = ({navigation}) => {
   return(
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
-      <Button title="ir a detalle" onPress={() => navigation.navigate('Detail', {lala: 'lele', id: 1} )}/>     
+      <Button title="ir a detalle" onPress={() => navigation.openDrawer()}/>     
     </View>
   )
 }
 
 HomeScreen.navigationOptions = {
+  drawerIcon: ({ tintColor}) => {
+    return <Ionicons name='ios-information-circle' size={25} color={tintColor}/>
+  },
   headerTitle: <Logo/>,
   headerRight: (
     <Button onPress={() => alert('Lalalalala')} title="Soy lala" color="#222"/>
@@ -37,7 +42,7 @@ const DetailScreen = ({navigation}) => {
   )
 }
 
-DetailScreen.navigationOptions = ({ navigation, navigationOptions }) => {
+DetailScreen.navigationOptions = ({ navigation }) => {
   return {
     title: navigation.getParam('title', 'Cargando...'),
     headerRight: (
@@ -46,7 +51,7 @@ DetailScreen.navigationOptions = ({ navigation, navigationOptions }) => {
   }
 }
 
-const AppNavigator = createBottomTabNavigator({
+const AppNavigator = createDrawerNavigator({
   Home: {
     screen: HomeScreen
   },
@@ -56,9 +61,7 @@ const AppNavigator = createBottomTabNavigator({
 }, { 
   initialRouteName: 'Home',
   defaultNavigationOptions: {
-    tabBarOptions: {
-      backgroundColor: '#fec'
-    }
+    
   }
 })
 
