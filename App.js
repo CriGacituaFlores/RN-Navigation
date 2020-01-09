@@ -56,12 +56,8 @@ const AppNavigator = createBottomTabNavigator({
 }, { 
   initialRouteName: 'Home',
   defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: '#fdc'
-    },
-    headerTintColor: '#555',
-    headerTitleStyle: {
-      fontWeight: '900'
+    tabBarOptions: {
+      backgroundColor: '#fec'
     }
   }
 })
